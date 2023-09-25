@@ -13,7 +13,7 @@ class MyAgent(MLAgent):
  
 random.seed(1)
  
-my_agent = MyAgent()
+my_agent = MyAgent(alpha=0.9, epsilon=0.2)
 random_agent = RandomAgent()
 
 train(my_agent, 3000)
