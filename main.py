@@ -1,6 +1,7 @@
 import random
-from bke import MLAgent, is_winner, opponent, RandomAgent, validate, plot_validation, train, train_and_plot, train_and_validate
- 
+from bke import MLAgent, is_winner, opponent, RandomAgent, validate, plot_validation, train, train_and_validate
+
+#MyAgent class aangemaakt
 class MyAgent(MLAgent):
     def evaluate(self, board):
         if is_winner(board, self.symbol):
@@ -10,12 +11,15 @@ class MyAgent(MLAgent):
         else:
             reward = 0
         return reward
- 
+
+#Seed toegevoegd zodat deze niet willekeurig is
 random.seed(1)
- 
+
+#Hyperparameters toegevoegd aan MyAgent
 my_agent = MyAgent(alpha=0.1, epsilon=0.2)
 random_agent = RandomAgent()
 
+#MyAgent wordt getraind
 train_and_validate(
   agent=my_agent,
   validation_agent=random_agent,
@@ -23,11 +27,14 @@ train_and_validate(
   trainings=500,
   validations=1000)
 
+#MyAgent stopt met leren
 my_agent.learning = False
 
+#MyAgent wordt gevalidate
 validation_result = validate(    
     agent_x=my_agent,
     agent_o=random_agent,
     iterations=10000,)
- 
+
+#Grafiek wordt geplot
 plot_validation(validation_result)
